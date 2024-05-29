@@ -6,6 +6,7 @@ import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -40,6 +41,8 @@ class BeerControllerTest {
                 .beerName("Beer1")
                 .beerStyle("PALE_ALE")
                 .upc(123456789012L)
+                .price(BigDecimal.valueOf(1.12))
+                .upc(123963456987L)
                 .build();
 	}
 
@@ -47,7 +50,7 @@ class BeerControllerTest {
 	public void getBeer() throws Exception {
 		given(beerService.getBeerById(any(UUID.class))).willReturn(validBeer);
 
-		mockMvc.perform(get("/api/v1/beer/" + validBeer.getId().toString()).accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/api/v1/beer/" + UUID.randomUUID().toString()).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$.id", is(validBeer.getId().toString())))
@@ -72,12 +75,13 @@ class BeerControllerTest {
 	@Test
 	public void updateBeerById() throws Exception {
 		// given
+		validBeer.setId(null);
 		BeerDto beerDto = validBeer;
 		String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
 		// when
 		mockMvc.perform(
-				put("/api/v1/beer/" + validBeer.getId()).contentType(MediaType.APPLICATION_JSON).content(beerDtoJson))
+				put("/api/v1/beer/" + UUID.randomUUID().toString()).contentType(MediaType.APPLICATION_JSON).content(beerDtoJson))
 				.andExpect(status().isNoContent());
 
 		then(beerService).should().updateBeer(any(), any());

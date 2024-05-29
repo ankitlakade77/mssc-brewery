@@ -1,11 +1,10 @@
 package com.restSpring.msscbrewery.domain;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
@@ -39,10 +38,10 @@ public class Beer {
 	
 	@CreationTimestamp
 	@Column(updatable = false)
-	private OffsetDateTime createdDate;
+	private Timestamp createdDate;
 	
 	@UpdateTimestamp
-	private OffsetDateTime lastModifiedDate;
+	private Timestamp lastModifiedDate;
 	
 	private String beerName;
 	private String beerStyle;
@@ -52,5 +51,5 @@ public class Beer {
 	private BigDecimal price;
 	private Integer minOnHand;
 	
-	private Integer quantityToBrewss;
+	private Integer quantityToBrew;
 }
