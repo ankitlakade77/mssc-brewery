@@ -10,6 +10,9 @@ import com.restSpring.msscbrewery.repositories.BeerRepository;
 public class BeerLoader implements CommandLineRunner{
 	
 	private final BeerRepository beerRepository;
+	
+	public static final String BEER_1_UPC="33370100000231";
+	public static final String BEER_2_UPC="33170200000245";
 
 	public BeerLoader(BeerRepository beerRepository) {
 		super();
@@ -28,7 +31,7 @@ public class BeerLoader implements CommandLineRunner{
 					.beerStyle("IPA")
 					.quantityToBrew(200)
 					.minOnHand(12)
-					.upc(33370100000231L)
+					.upc(BEER_1_UPC)
 					.price(new BigDecimal("12.95"))
 					.build());
 			
@@ -37,7 +40,7 @@ public class BeerLoader implements CommandLineRunner{
 					.beerStyle("PALE_ALE")
 					.quantityToBrew(300)
 					.minOnHand(35)
-					.upc(33170200000245L)
+					.upc(BEER_2_UPC)
 					.price(new BigDecimal("11.95"))
 					.build());
 		}

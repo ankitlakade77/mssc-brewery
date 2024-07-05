@@ -35,14 +35,16 @@ class BeerControllerTest {
 	
 	BeerDto validBeer;
 
+	public static final String BEER_1_UPC="33370100000231";
+	public static final String BEER_2_UPC="33170200000245";
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		validBeer = BeerDto.builder().id(UUID.randomUUID())
                 .beerName("Beer1")
                 .beerStyle("PALE_ALE")
-                .upc(123456789012L)
                 .price(BigDecimal.valueOf(1.12))
-                .upc(123963456987L)
+                .upc(BEER_1_UPC)
                 .build();
 	}
 

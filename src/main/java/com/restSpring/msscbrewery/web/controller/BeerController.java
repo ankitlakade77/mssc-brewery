@@ -47,15 +47,13 @@ public class BeerController {
 		BeerDto savedBeerDto = beerService.saveNewBeer(beerDto);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Location", "/api/v1/beer/"+savedBeerDto.getId().toString());
-		return new ResponseEntity(headers, HttpStatus.CREATED);
+		return new ResponseEntity<>(headers, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{beerId}")
 	public ResponseEntity<BeerDto> handleUpdate(@PathVariable("beerId") UUID beerId, @Validated @RequestBody BeerDto beerDto ){
 		
-		beerService.updateBeer(beerId,beerDto);
-		
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(beerService.updateBeer(beerId,beerDto), HttpStatus.NO_CONTENT);
 	}
 	
 	@DeleteMapping({"/beerId"})
