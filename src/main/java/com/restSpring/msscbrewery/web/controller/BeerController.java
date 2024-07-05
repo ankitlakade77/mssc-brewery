@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.restSpring.msscbrewery.web.model.*;
 import com.restSpring.msscbrewery.web.services.BeerService;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+// @RequiredArgsConstructor this can be used to create BeerController with BeerService as component.
 @RestController
 @RequestMapping("/api/v1/beer/")
 public class BeerController {
