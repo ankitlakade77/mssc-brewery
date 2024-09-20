@@ -2,7 +2,6 @@ package com.restSpring.msscbrewery.web.model;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
