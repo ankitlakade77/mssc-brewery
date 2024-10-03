@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 
 // @RequiredArgsConstructor this can be used to create BeerController with BeerService as component.
 @RestController
-@RequestMapping("/api/v1/beer/")
+@RequestMapping("/api/v1/")
 public class BeerController {
 	
 	private final BeerService beerService;
@@ -35,7 +35,7 @@ public class BeerController {
 	}
 
 
-	@GetMapping("/{beerId}")
+	@GetMapping("beer/{beerId}")
 	public ResponseEntity<BeerDto> getBeer(@PathVariable UUID beerId){
 		
 		return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
@@ -50,16 +50,24 @@ public class BeerController {
 		return new ResponseEntity<>(headers, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/{beerId}")
+	@PutMapping("beer/{beerId}")
 	public ResponseEntity<BeerDto> handleUpdate(@PathVariable("beerId") UUID beerId, @Validated @RequestBody BeerDto beerDto ){
 		
 		return new ResponseEntity<>(beerService.updateBeer(beerId,beerDto), HttpStatus.NO_CONTENT);
 	}
 	
-	@DeleteMapping({"/beerId"})
+	@DeleteMapping("beer/{beerId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteBeer(@PathVariable("beerId") UUID beerId){
 		beerService.deleteBeer(beerId);
 	}
+	
+	
+	@GetMapping("beerUpc/{upc}")
+	public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable String upc){
+		
+		return new ResponseEntity<>(beerService.getBeerByUpc(upc), HttpStatus.OK);
+	}
+	
 	
 }

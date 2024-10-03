@@ -3,10 +3,14 @@ package com.restSpring.msscbrewery.bootstrap;
 import java.math.BigDecimal;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import com.restSpring.msscbrewery.domain.Beer;
 import com.restSpring.msscbrewery.repositories.BeerRepository;
 
+import lombok.RequiredArgsConstructor;
+
+@Component
 public class BeerLoader implements CommandLineRunner{
 	
 	private final BeerRepository beerRepository;

@@ -47,8 +47,14 @@ public class BeerServiceImpl implements BeerService {
 
 	@Override
 	public void deleteBeer(UUID beerId) {
-		// TODO Auto-generated method stub
 		log.debug("Deleting a beer...!");
 	}
+
+	@Override
+	public BeerDto getBeerByUpc(String upc) {
+		return beerMapper.BeerToBeerDto(beerRepository.findByUpc(upc).orElseThrow(NotFoundException::new));
+	}
+	
+	
 	
 }
